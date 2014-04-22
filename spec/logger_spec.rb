@@ -27,5 +27,11 @@ describe LTSV::Logger::Logger::LTSVFormatter do
       msg = "foo"
       formatter.call(logger.level, time, 'hoge', msg).should eq("time:#{time}\tmessage:foo\n")
     end
+
+    it 'return ltsv when argument is String including line break' do
+      time = Time.now
+      msg = "message1\nmessage2"
+      formatter.call(logger.level, time, 'hoge', msg).should eq("time:#{time}\tmessage:message1\\nmessage2\n")
+    end
   end
 end

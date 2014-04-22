@@ -14,7 +14,7 @@ module LTSV
           when Hash
             raws = msg.inject(raws) { |h, (key, value)| h << "#{key}:#{value}"; h }
           when String
-            msg.gsub!(/[\n\r]/, '')
+            msg.gsub!(/[\n\r]/, '\\\n')
             raws << "message:#{msg}"
           end
           "#{raws.join("\t")}\n"
